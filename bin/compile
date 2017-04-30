@@ -60,6 +60,9 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
+# Hack tcl8.6
+ln -s share/tcltk/tcl8.6 $BUILD_DIR/.apt/usr/library
+
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000_apt.sh
